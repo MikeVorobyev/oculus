@@ -590,14 +590,14 @@ header {
 
 .promo__inner {
     position: relative;
-    background-image: url('/images/promo.jpg');
+    background-image: url(images/promo.jpg);
     min-height: 500px;
     max-width: 1200px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     text-align: center;
-    margin: 0 auto;    /* От себя добавил */
+    margin: 0 auto;
 }
 
 .metaverse-loading__wrapper {
