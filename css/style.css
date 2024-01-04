@@ -1,13 +1,13 @@
 @font-face {
     font-family: 'Helvetica', sans-serif;
-    src: url(/fonts/Helvetica.woff2);
+    src: url('../fonts/Helvetica.woff2');
     font-style: normal;
     font-weight: 400;
 }
 
 @font-face {
     font-family: 'Helvetica-Bold', sans-serif;
-    src: url(/fonts/Helvetica-Bold.woff2);
+    src: url('../fonts/Helvetica-Bold.woff2');
     font-style: normal;
     font-weight: 700;
 }
@@ -141,7 +141,7 @@ header {
                                                 /* окна навигации .nav равной 80 пикселей */
                                                 /* и толщины бордера, расположенного внизу */
                                                 /* хедера(header) и равного 1 пиксель.)*/
-    background-image: url(/images/top-bg.jpg);
+    background-image: url('../images/top-bg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom center;
@@ -326,7 +326,7 @@ header {
     grid-column: 2 / 3;
     width: 280px;
     height: 150px;
-    background-image: url(/images/features_bg-1.jpg);
+    background-image: url('../images/features_bg-1.jpg');
     background-repeat: no-repeat;
     background-position: center;
     block-size: cover;
