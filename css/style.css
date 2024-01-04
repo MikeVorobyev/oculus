@@ -1,0 +1,1322 @@
+@font-face {
+    font-family: 'Helvetica', sans-serif;
+    src: url(/fonts/Helvetica.woff2);
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Helvetica-Bold', sans-serif;
+    src: url(/fonts/Helvetica-Bold.woff2);
+    font-style: normal;
+    font-weight: 700;
+}
+
+:root {
+    --color-text-default: #5c5c5e;
+    --color-line-default: #CACAD6;
+    --color-black-default: #070707;
+    --gradient: linear-gradient(180deg, #BC10D8 0%, rgba(80, 0, 250, 0.93) 100%);
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+li {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+button {
+    color: inherit;              /* Свойство inherit принуждает брать свойства */
+                                 /* от вышестоящего родителя, */
+                                 /* то есть наследовать от родителей. */
+    font-size: inherit;
+    background-color: transparent;  /* transparent - значит прозрачный, */
+                                    /* то есть бэкграунд прозрачный */
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 0;
+}
+
+.container {
+    max-width: 1220px;
+    padding: 0 10px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+body {
+    font-family: 'Helvetica', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.4;
+    color: var(--color-text-default);
+}
+
+header {
+    border-bottom: 1px solid var(--color-line-default);
+}
+
+.nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    height: 80px;
+    /* background-color: #F6F4F5; */
+}
+
+.menu-btn {
+    width: 40px;
+    height: 30px;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.menu-btn span {
+    width: 100%;
+    height: 2px;
+    background-color: #000;   
+}
+
+.menu {
+    display: flex;
+    gap: 0 20px;
+}
+
+.logo {
+    justify-self: center;
+}
+
+.basket {
+    position: relative;
+    justify-self: end;
+}
+
+.basket span {
+    color: #fff;
+    font-size: 11px;
+    width: 15px;
+    height: 15px;
+    background-color: #000;
+    border-radius: 50%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 0;
+    right: -2px;
+}
+
+.basket-options {
+    width: 24px;
+    height: 24px;
+}
+
+.top {
+    min-height: calc(100vh - 81px);             /* Расчитываем высоту секции .top от */
+                                                /* 100% высоты экрана минус 81 пиксель.*/
+                                                /* (Число 81 пиксель берется из высоты */
+                                                /* окна навигации .nav равной 80 пикселей */
+                                                /* и толщины бордера, расположенного внизу */
+                                                /* хедера(header) и равного 1 пиксель.)*/
+    background-image: url(/images/top-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom center;
+    margin-bottom: 100px;
+}
+
+.title {
+    padding-top: 14%;
+    font-size: 96px;
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+.subtitle {
+    font-size: 36px;
+    margin-bottom: 5px;
+}
+
+.top__text {
+    font-size: 13px;
+    margin-bottom: 50px;
+}
+
+.top__text_mobile-br {  /* С помощью тега <br> с классом .top__text_mobile-br */
+                        /* в документе html мы сделали */
+                        /* перенос строки для части текста. */
+    display: none;      /* Здесь в CSS мы отключили перенос строки для дисплеев */
+                        /* с большим разрешением с помощью display: none. Затем мы */
+                        /* создали медиазапрос на маленьком разрешении 388px и изменили */
+                        /* свойство display: none на display: block и тем самым начиная с этого */
+                        /* разрешения перенос строки стал разрешен */
+}
+
+
+/* --------Градиент кнопка с градиент псевдо-бордером--------------------------------------------------------*/
+
+/* ===============ОБЩАЯ РОДИТЕЛЬСКАЯ ЧАСТЬ КНОПКИ===================*/
+.by-btn {
+    display: flex;                /* Обязвтельно устанавливаем */
+                                  /* display: flex, иначе работать не будет. */
+
+    border: none;                  /* с помощью команды none убираем */
+                                   /* бордер по умолчанию у кнопки */
+
+    background: var(--gradient);   /* Содаем бэкграунд с нужным градиентом*/
+                                   /* (Градиент из этой переменной указан */
+                                   /* выше, вместе со всеми переменными в :root)*/
+
+    padding: 1px;                  /* С помощью паддинга, шириной в 1 пиксель, */
+                                   /* создаем псевдо-бордер, он получится с градиентом */
+                                   /* так-как он будет заполнятся цветом бэкграунда */
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+/* ===============ДОЧЕРНИЕ ЧАСТИ КНОПКИ (левая и правая)================*/
+
+.by-btn__text {
+    color: #F6F4F5;
+    padding: 20px 105px;              /* Задаем размер кнопки с помощью паддингов*/
+}
+
+.by-btn__price {
+    background: rgb(230,228,229);  /* Задаем бэкграунт кнопке с цветом */
+                                     /* общего бэкграунд фона проекта */
+
+    padding: 20px 105px;             /* Задаем размер кнопки с помощью паддингов*/
+}
+/* ----------------------------------------------------------------------------------------------------------*/
+
+
+.by__text {
+    font-size: 13px;
+}
+
+.features {
+    margin-bottom: 100px;
+}
+
+.features__titles {
+    display: flex;
+}
+
+.features__title {
+    flex-basis: 300px;     /* Работает как width: 300px только для флексбоксов*/
+    padding-right: 20px;
+}
+
+
+/* ----------------Градиент текст----------------------------------------------------------------------------*/
+
+.features__text {
+    position: relative;
+    max-width: 330px;
+    text-transform: uppercase;
+    font-size: 36px;
+    line-height: normal;
+    bottom: 6px;
+    margin-bottom: 2px;
+    background: var(--gradient);             /* Создаем градиент заливку под текстом в параграфе(p) */
+
+    -webkit-background-clip: text;           /* Обрезаем заливку, с помощью клиппинга(clip), */
+                                             /* под очертания текста в этом параграфе, */
+                                             /* для этого не забываем указать text после двоеточия */
+
+    -webkit-text-fill-color: transparent;    /* Указываем тексту стать прозрачным(transparent) и тем самым становится видна */
+                                             /* градиентная заливка под буквами текста */
+}
+
+/* ----------------------------------------------------------------------------------------------------------*/
+
+
+.tabs {
+    display: grid;
+    grid-template-columns: 300px auto;
+}
+
+.tabs__btn {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.tabs__btn-item {
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.tabs__btn-item:last-child {
+    margin-bottom: 0;
+}
+
+.tabs__btn-item--active {
+    color: var(--color-black-default);
+}
+
+.tabs__content {
+    position: relative;
+    min-height: 300px;
+}
+
+.tabs__content-item {
+    display: grid;
+    grid-template-columns: auto 280px;
+    grid-template-rows: auto 150px;
+    gap: 40px 20px;
+    opacity: 0;
+    position: absolute;
+    transition: opacity .3s ease;
+}
+
+.tabs__content-item--active {
+    opacity: 1;
+
+}
+
+.tabs__content-img {
+    grid-row: 1 / -1;
+    align-self: stretch;
+    object-fit: cover;   /* Для большой картинки во втором блоке ставим это свойство */
+                         /* для того чтобы картинка обрезалась по краям слева и справа */
+                         /* вмсето того, чтобы непропорционально и некрасиво сжиматься */
+
+    object-position: right; /* С помощью этого свойства можно сделать так, чтобы картинка */
+                            /* к которой был применен  object-fit: cover обрезалась по краям */
+                            /* не относительно центра картинки (ровно слева и справа), */
+                            /* а выбрать сторону с которой картинка обрезаться не будет. */
+                            /* В данном случае мы выбрали  object-position: right и справа ничего */
+                            /* обрезаться не будет, но слева картинка будет обрезаться. */
+    padding-right: 20px;
+    border-right: 1px solid var(--color-line-default);
+}
+
+.tabs__content-box h3 {
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+
+.video {
+    grid-column: 2 / 3;
+    width: 280px;
+    height: 150px;
+    background-image: url(/images/features_bg-1.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    block-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: start;
+    padding: 9px 10px;
+    background-size: cover;
+}
+
+.video__btn {
+    margin-left: 22px;
+}
+
+.video span {
+    font-size: 13px;
+    color: #F6F4F5;
+}
+
+.game {
+    margin-bottom: 100px;
+}
+
+.game__title {
+    margin-bottom: 50px;
+}
+
+.game__inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.game__description {
+    padding-right: 10px;
+}
+
+.game__description-title {
+    font-size: 36px;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+    background: var(--gradient);             
+    -webkit-background-clip: text;           
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+}
+
+.game__description-title_mobile-br {
+    display: none;
+}
+
+.game__description-text {
+    margin-bottom: 30px;
+}
+
+.game_link_wrapper {
+    max-width: 225px;
+    background: var(--gradient);
+    padding: 1px;
+}
+
+.game_link_wrapper_2 {
+    background: #FFF;
+    padding: 0 28px;
+}
+
+.game__link {
+    display: inline-block;       
+    font-weight: 700;
+    background: var(--gradient);             
+    -webkit-background-clip: text;           
+    -webkit-text-fill-color: transparent;
+    padding: 16px;
+    text-align: center;
+}
+
+.game__item_wrapper_outside-1 {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    background: var(--gradient);
+    padding: 1px 0.5px 1px 1px;
+}
+
+.game__item_wrapper_outside-2 {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    background: var(--gradient);
+    padding: 1px 0.5px 1px 0.5px;
+}
+
+.game__item_wrapper_outside-3 {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    background: var(--gradient);
+    padding: 1px 1px 1px 0.5px;
+}
+
+.game__item_wrapper-inside {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    background: #FFF;
+}
+
+.game__item {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 22px;
+    min-height: 498px;
+}
+
+.game__item-img {
+    padding: 20px;
+    padding-bottom: 0;
+    margin-bottom: 10px;
+}
+
+.game__item-title {
+    font-size: 24px;
+    font-weight: 400;
+    padding: 0 10px 0 20px;
+    margin-bottom: 10px;
+}
+.game__item-text {
+    flex-grow: 1;
+    padding: 0 20px;
+    margin-bottom: 10px;
+    line-height: 1.1;
+    font-weight: 400;
+}
+
+.game__item-link {
+    /* margin-top: auto; */
+    font-weight: 400;
+    padding: 0 20px;
+    background: var(--gradient);             
+    -webkit-background-clip: text;           
+    -webkit-text-fill-color: transparent;
+}
+
+.buy {
+    position: relative;
+    margin-bottom: 110px;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+.buy__img {
+    margin-bottom: 30px;
+}
+
+.buy .by-btn {
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.buy .by-btn__price {
+    background: #FFF;
+}
+
+.buy__background {
+    position: absolute;
+    z-index: -1;
+    font-size: 400px;
+    font-weight: 700;
+    opacity: 0.2;
+    line-height: 380px;
+    background: linear-gradient(180deg, #BC10D8 0%, rgba(80, 0, 250, 0.93) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: line-text 12s linear 1s infinite;
+}
+
+@keyframes line-text {
+    from {
+        transform: translateX(115%);
+        transform-origin: left center;
+    }
+
+    to {
+        transform: translateX(-115%);
+        transform-origin: right center;
+    }
+}
+
+.equipment {
+    margin-bottom: 100px;
+}
+
+.equipment__title {
+    margin-bottom: 10px;
+}
+
+.equipment__box {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.equipment__box-item {
+    margin: 15px 10px;
+}
+
+.equipment__box-img_wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+.equipment__box-img {
+    position: relative;
+    padding: 10px;
+}
+
+.equipment__box-img_inner {
+    position: absolute;
+    height: calc(100% - 40px);
+    width: 100%;
+    outline: 1px solid var(--color-line-default);
+    outline-offset: 10px;
+}
+
+.equipment__box-item--one {
+    grid-row: 1 / -1;
+}
+
+.equipment__box-text_wrapper {
+    position: relative;
+    bottom: 5px;
+    left: -10px;
+}
+
+.equipment__box-text {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+}
+
+.equipment__box-title {
+    position: relative;
+    left: -10px;
+    background: var(--gradient);             
+    -webkit-background-clip: text;           
+    -webkit-text-fill-color: transparent;
+    font-size: 36px;
+    text-transform: uppercase;
+    line-height: normal;
+    margin-top: 0px;
+}
+
+.promo {
+    margin-bottom: 100px;
+}
+
+.promo__inner {
+    position: relative;
+    background-image: url(/images/promo.jpg);
+    min-height: 500px;
+    max-width: 1200px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: center;
+    margin: 0 auto;    /* От себя добавил */
+}
+
+.metaverse-loading__wrapper {
+    position: relative;
+    right: 55px;
+    top: 70px;
+}
+
+.metaverse-loading-1 {
+    position: absolute;
+    z-index: 1;
+    width: 109px;
+    height: 36px;
+}
+.metaverse-loading-2 {
+    position: absolute;
+    z-index: 2;
+    width: 109px;
+    height: 36px;
+    animation: metaverse-loading-point-2 2s infinite ease;
+}
+.metaverse-loading-3 {
+    position: absolute;
+    z-index: 3;
+    width: 109px;
+    height: 36px;
+    animation: metaverse-loading-point-3 2s infinite ease;
+    animation-delay: 0.5s;
+}
+
+.promo__btn {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: normal;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    bottom: 80px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    background: var(--gradient);
+}
+
+@keyframes metaverse-loading-point-2 {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes metaverse-loading-point-3 {
+    0% {
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    60% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.accessories {
+    margin-bottom: 100px;
+}
+
+.accessories__title {
+    margin-bottom: 30px;
+}
+
+.accessories__text {
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    font-size: 36px;
+    font-weight: 400;
+    line-height: normal;
+    background: var(--gradient);             
+    -webkit-background-clip: text;           
+    -webkit-text-fill-color: transparent;
+}
+
+.accessories__items {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    min-height: 540px;
+}
+
+.accessories__item-1 {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+    border-left: 1px solid;
+    border-image: var(--gradient);
+    border-image-slice: 1; 
+}
+
+.accessories__item-2 {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+    border-image: var(--gradient);
+    border-image-slice: 1; 
+}
+
+.accessories__item-3 {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+    border-image: var(--gradient);
+    border-image-slice: 1; 
+}
+
+.accessories__item-4 {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+    border-image: var(--gradient);
+    border-image-slice: 1; 
+}
+
+.accessories__item-img {
+    margin-bottom: 10px;
+}
+
+.accessories__item-title {
+    /* display: block; */
+    min-height: 60px;
+    flex-grow: 0;
+    font-size: 24px;
+    color: var(--color-black-default);
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 10px;
+}
+.accessories__item-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    flex-grow: 1;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+.accessories__item-price {
+    font-size: 16px;
+    color: var(--color-black-default);
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 20px;
+}
+.accessories__item-btn {
+    max-width: 100%;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: normal;
+    padding: 6px;
+    border: 1px solid;
+    border-image: var(--gradient);
+    border-image-slice: 1;  
+    background: var(--gradient);             
+    -webkit-background-clip: text;           
+    -webkit-text-fill-color: transparent;
+    bottom: 20px;
+}
+
+.contacts {
+    margin-bottom: 100px;
+}
+
+.contacts__wrapper {
+    border-right: 1px solid var(--color-line-default);
+}
+.contacts__title {
+    color: var(--color-black-default);
+    font-size: 24px;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 10px;
+}
+
+.contacts__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.contacts__form {
+    flex-basis: 600px;
+}
+
+.contacts__text {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.contacts__email {
+    line-height: normal;
+    padding-right: 20px;
+}
+
+.form {
+    position: relative;
+    margin-bottom: 10px;
+
+}
+
+.form__input {
+    width: 100%;
+    border: none;
+    padding: 22px 70px 22px 0;
+    border-bottom: 1px solid var(--color-line-default);
+}
+
+.form__input::placeholder {
+    color: var(--color-line-default);
+    font-family: Helvetica;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.form__btn {
+    position: absolute;
+    right: 0;
+    bottom: 5px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--color-line-default);
+    font-weight: 700;
+    line-height: normal;
+}
+
+.footer {
+    border-top: 1px solid var(--color-line-default);
+    border-bottom: 1px solid var(--color-line-default);
+    padding: 30px 0;
+    margin-bottom: 44px;
+}
+
+.social {
+    display: flex;
+    gap: 20px;
+    justify-content: end;
+}
+
+@media (max-width: 1140px) {
+    .footer .menu__link {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .features__title {
+        flex-basis: 200px;
+    }
+
+    .features__text {
+        bottom: 2px;
+    }
+
+    .tabs {
+        grid-template-columns: 200px auto;
+    }
+}
+
+@media (max-width: 1024px) {
+    .features__titles {
+        justify-content: space-between;
+    }
+
+    .features__title {
+        position: absolute;
+    }
+
+    .features__text {
+        position: relative;
+        z-index: 1;
+        margin: 0 auto;
+        margin-bottom: 2px;
+    }
+
+    .tabs {
+        display: block;
+    }
+
+    .tabs__btn {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 5px;
+    }
+
+    .tabs__btn-item {
+        display: flex;
+        justify-content: center;
+        flex-grow: 1;
+        font-size: 12px;
+        padding: 10px 5px;
+        border: 1px solid var(--color-line-default);
+    }
+
+    .tabs__content-item {
+        gap: 40px calc(4.4vw);
+    }
+
+    .tabs__content-img {
+        padding-right: calc(4.4vw);
+    }
+
+    .game__inner {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    .game__title {
+        margin-bottom: 10px;
+    }
+
+    .game__item_wrapper_outside-1, 
+    .game__item_wrapper_outside-2, 
+    .game__item_wrapper_outside-3 {
+        padding: 1px 1px 1px 1px;
+    }
+
+    .footer .menu__link {
+        font-size: 12px;
+    }
+    
+}
+
+@media (max-width: 968px) {
+    .game__description-title_mobile-br {
+        display: block;
+    }
+
+    .equipment__box-text {
+        font-size: 15px;
+    }
+
+    .accessories__item-title {
+        font-size: 20px;
+    }
+
+    .contacts__wrapper {
+        border-right: none;
+    }
+    .contacts__inner {
+        display: block;
+    }
+
+    .contacts__form {
+        margin-bottom: 20px;
+    }
+
+    .footer .menu {
+        display: none;
+    }
+
+    .footer .nav {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 820px) {
+    .menu-btn {
+        display: flex;
+    }
+      
+    .menu {
+        position: absolute;
+        top: 80px;
+        left: 0;
+        right: 0;
+        width: 100%;
+        background-color: black;
+        color: white;
+        padding: 100px 0;
+        transform: translateX(-100%);
+        transition: transform 1s;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .menu__list {
+        font-size: 24px;
+    }
+
+    .menu.menu--active {
+        transform: translateX(0%);
+    }
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 66px;
+    }
+
+    .subtitle {
+        font-size: 24px;
+    }
+
+    .features__titles {
+        display: block;
+    }
+
+    .features__title {
+        position: inherit;
+    }
+
+    .features__text {
+        position: inherit;
+        margin: inherit;
+        margin-bottom: 2px;
+    }
+
+    .tabs__btn-item {
+        padding: 10px 2.5px;
+        font-size: 11px;
+        margin-bottom: 10px;
+    }
+/* ----------Решение проблемы наползния блока features на блок game---------- */
+    .tabs__content-item {
+        position: relative;           /* У блока с контентом(который ниже блока с кнопками) */
+                                      /* меняем position с absolute на relative */
+
+        height: 0;                    /* Задаем высоту(height) равную 0 */
+        gap: 10px 10px;
+    }
+
+    .tabs__content-item--active {
+        height: auto;                /* У класса(tabs__content-item--active),  */
+                                     /* который переключает контент внутри */
+                                     /* блока tabs__content-item задаем высоту(height) auto */
+    }
+ /* ------------------------------------------------------------------------- */  
+    .tabs__content-img {
+        grid-column: 1 / -1;
+        padding-right: 0;
+    }
+    
+    .tabs__content-box h3 {
+        font-size: 24px;
+        font-weight: 400;
+        margin-bottom: 5px;
+    }
+
+    .features__title {
+        margin-bottom: 10px;
+    }
+
+    .equipment__box {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .equipment__box-item--title {
+        grid-row: 1 / 2;
+    }
+
+    .accessories__title {
+        margin-bottom: 5px;
+    }
+    
+    .accessories__text {
+        margin-bottom: 5px;
+    }
+
+    .accessories__item-title {
+        font-size: 18px;
+        min-height: 20px;
+    }
+
+    .accessories__items {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .accessories__item-1, 
+    .accessories__item-2,
+    .accessories__item-3,
+    .accessories__item-4 {
+        border: 1px solid;
+        border-image: var(--gradient);
+        border-image-slice: 1; 
+    }
+}
+
+@media (max-width: 624px) {
+    .top {
+        text-align: center;
+    }
+
+    .top__text {
+        margin-bottom: 25px;
+    }
+
+    .by-btn {
+        margin: 0 auto;
+        margin-bottom: 10px;
+    }
+    
+    .by-btn__text {
+        padding: 20px 75px;
+    }
+    
+    .by-btn__price {
+        padding: 20px 75px;
+    }
+
+    .tabs__btn {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5px;
+        margin-bottom: 10px;
+    }
+
+    .tabs__btn-item {
+        margin-bottom: 0px;
+    }
+
+    .tabs__content-box p {
+        font-size: 15px;
+    }
+
+    .accessories__item-title {
+        min-height: 45px;
+    }
+}
+
+@media (max-width: 524px) {
+    .nav {
+        grid-template-columns: 1fr 2fr 1fr;
+    }
+
+    .by-btn__text {
+        padding: 20px 55px;
+    }
+    
+    .by-btn__price {
+        padding: 20px 55px;
+    }
+
+    .tabs__content-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .video {
+        width: 100%;
+        height: calc(100vw / 2);
+    }
+
+    .game__inner {
+        grid-template-columns: 1fr;
+    }
+
+    .game__description-title_mobile-br {
+        display: none;
+    }
+
+    .buy {
+        overflow-y: hidden;
+    }
+
+    .buy__img {
+        width: 60%;
+        margin-bottom: 10px;
+    }
+         
+    .buy__background {
+        font-size: calc(60vw);
+        line-height: calc(60vw);
+    }
+}
+
+@media (max-width: 490px) {
+    .game__description-title_mobile-br {
+        display: block;
+    }
+}
+
+@media (max-width: 448px) {
+    .title {
+        font-size: 46px;
+        margin-bottom: 5px;
+    }
+
+    .subtitle {
+        font-size: 20px;
+    }
+
+    .top__text {
+        margin-bottom: 20px;
+    }    
+
+    .by-btn__text {
+        padding: 20px 45px;
+    }
+    
+    .by-btn__price {
+        padding: 20px 45px;
+    }
+
+    .equipment__title {
+        margin-bottom: -5px;
+    }
+
+    .equipment__box {
+        grid-template-columns: 1fr;
+        grid-template-rows: 60px 1fr 1fr 1fr 1fr;
+    }
+
+    .equipment__box-item--one {
+        grid-row: 2 / 3;
+    }
+
+    .equipment__box-item--title {
+        grid-row: 1 / 2;
+    }
+
+    .accessories__items {
+        grid-template-columns: 1fr;
+        gap: 10px 0;
+    }
+
+    .accessories__item-title {
+        min-height: 20px;
+    }
+
+    .footer .nav {
+        flex-direction: column;
+        justify-content: center;
+        gap: 15px;
+    }
+
+}
+
+@media (max-width: 388px) {
+    .by-btn__text {
+        padding: 20px 25px;
+    }
+    
+    .by-btn__price {
+        padding: 20px 25px;
+    }
+
+    .top__text_mobile-br {
+        display: block;
+    }
+
+    .features__text {
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .game__description-title {
+        font-size: 30px;
+    }
+
+    .game__description {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .equipment__box-item--title {
+        margin: 10px auto;
+    }
+
+    .equipment__box-title {
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .equipment__box {
+        grid-template-rows: 40px 1fr 1fr 1fr 1fr;
+    }
+
+    .accessories__text {
+        font-size: 30px;
+        margin-bottom: 5px;
+        text-align: center;
+    }
+}
